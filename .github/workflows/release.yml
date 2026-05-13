@@ -45,3 +45,17 @@ jobs:
           releaseName: ${{ github.ref_name }}
           releaseDraft: true
           prerelease: false
+
+      - name: Rename portable exe
+        if: matrix.platform == 'windows-latest'
+        run: cp src-tauri/target/release/m3u-creator.exe src-tauri/target/release/m3u-creator-portable.exe
+
+      - name: Upload portable exe
+        if: matrix.platform == 'windows-latest'
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          files: src-tauri/target/release/m3u-creator-portable.exe
+          name: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
