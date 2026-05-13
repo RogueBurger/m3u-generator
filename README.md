@@ -19,5 +19,3 @@ Drop a set of disk files onto the window and it will:
 npm install
 npm run tauri dev
 ```
-
-First run takes a few minutes to compile. After that it's fast.
